@@ -35,11 +35,11 @@ if [ ! -e "/nix" ]; then
         exit 1
     fi
 
-    info "Installing nix in single-user mode"
-    sh <(curl -L https://nixos.org/nix/install) --no-daemon
-
     info "Enabling flakes"
     sudo bash -c "mkdir -p /etc/nix; echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
+
+    info "Installing nix in single-user mode"
+    sh <(curl -L https://nixos.org/nix/install) --no-daemon
 fi
 
 # Source nix environment
