@@ -1,0 +1,5 @@
+# We prefer one line per sentence, disable line length check
+MD013: false
+
+# Conflicts with admonitions
+MD046: false
