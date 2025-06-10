@@ -1,59 +1,107 @@
-#!/bin/bash
+#!/bin/bash -e
 
 #
-# Setup script for nix inside the container.
+# Bash profile script for for nix-toolbox.
 #
-# Runs only once, on first entry of the toolbox container.
+# For technical details see https://thrix.github.io/nix-toolbox/architecture
 #
 
-# Helpers
-info() { echo -e "\033[0;32m[+] $*\033[0m"; }
-error() { echo -e "\033[0;31m$*\033[0m"; }
+# Sanity
+if ! command -v "gum" >/dev/null; then
+    echo "ERROR: gum command not found, cannot continue"
+    exit 1
+fi
 
 # Nix does not like home being a symlink, use the real path instead
 HOME=$(readlink -f "$HOME")
 export HOME
 
-# Install nix with flakes
+# Make sure XDG_DATA_HOME and XDG_CONFIG_HOME set, needed for CI
+[ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
+[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
+
+# Create nix-toolbox config dir
+NIX_TOOLBOX_CONFIG_DIR="$XDG_CONFIG_HOME/nix-toolbox"
+[ ! -e "$NIX_TOOLBOX_CONFIG_DIR" ] && mkdir -p "$NIX_TOOLBOX_CONFIG_DIR"
+
+# Settings
+NIX_TOOLBOX_HM_SKIPPED="$NIX_TOOLBOX_CONFIG_DIR/home-manager.skipped"
+NIX_TOOLBOX_HM_SETUP="$NIX_TOOLBOX_CONFIG_DIR/home-manager.setup"
+NIX_TOOLBOX_HM_TEMPLATE="$NIX_TOOLBOX_CONFIG_DIR/home-manager.template"
+
+# Gum default settings
+export GUM_SPIN_SPINNER="points"
+export GUM_SPIN_SHOW_ERROR="yes"
+export GUM_SPIN_TITLE="Please wait, this might take a while"
+
+# Install nix with flakes if no Nix store found
 if [ ! -e "/nix" ]; then
+    gum format <<EOF
 
-    # Refuse to start if existing home-manager generations found
-    if [ -n "$(ls "$HOME/.local/state/nix/profiles/home-manager*" 2>/dev/null)" ] || [ -e "$HOME/.local/state/home-manager/gcroots/current-home" ]; then
-        error "Error: Previous generations of home-manager found for your user. Cannot continue."
-        echo
-        error "This can be caused by:"
-        echo
-        error "* creating another 'nix-toolbox' with 'home-manager' container (only a single container is supported)"
-        error "* recreating 'nix-toolbox' container"
-        error "* you have an existing 'home-manager' installation"
-        echo
-        error "Remove the following files to continue (you will loose existing home-manager generations):"
-        echo
-        error "  rm /var/home/thrix/.local/state/nix/profiles/home-manager*"
-        error "  rm /var/home/thrix/.local/state/home-manager/gcroots/current-home"
-        echo
-        exit 1
-    fi
+# Welcome to **nix-toolbox**!
 
-    info "Enabling flakes"
-    sudo bash -c "mkdir -p /etc/nix; echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
+Running first-time setup.
 
-    info "Installing nix in single-user mode"
-    sh <(curl -L https://nixos.org/nix/install) --no-daemon
+See [getting started documentation](https://thrix.github.io/nix-toolbox/getting-started)
+for more information.
+EOF
+
+    echo
+
+    gum log -l info "Enabling nix-command and flakes in /etc/nix/nix.conf"
+    sudo mkdir -p /etc/nix
+    sudo bash -c "echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
+
+    gum log -l info "Creating /nix bind-mounted to $XDG_DATA_HOME/nix"
+    mkdir -p "$XDG_DATA_HOME/nix"
+    sudo mkdir /nix
+    sudo mount --bind "$XDG_DATA_HOME/nix" /nix
+
+    gum log -l info "Installing nix in single-user mode"
+    gum spin -- bash -c "sh <(curl -sL https://nixos.org/nix/install) --no-daemon 2>&1"
+fi
+
+# Mount /nix if not mounted, required after restart
+if ! mount | grep -q /nix; then
+    sudo mount --bind "$XDG_DATA_HOME/nix" /nix
 fi
 
 # Source nix environment
 # shellcheck source=/dev/null
 source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
-# Install home-manager
-if ! command -v home-manager >/dev/null; then
-    if [ -e "$HOME/.config/home-manager/flake.nix" ]; then
-        info "Installing home-manager from flake, using existing configuration, this might take a while"
-        nix run home-manager/master -- switch -b backup
+# Install Home Manager
+if ! command -v home-manager >/dev/null && [ ! -e "$NIX_TOOLBOX_HM_SKIPPED" ]; then
+    CONFIG_HM="$XDG_CONFIG_HOME/home-manager"
+
+    if [ -e "$CONFIG_HM" ]; then
+        gum log -l info "Installing Home Manager and initializing from existing config $CONFIG_HM"
+        gum spin -- nix run home-manager/master -- switch -b backup
     else
-        info "Installing home-manager from flake, initializing new configuration, this might take a while"
-        nix run home-manager/master -- init --switch -b backup
+        if [ -e "$NIX_TOOLBOX_HM_SETUP" ] || gum confirm "Setup Home Manager?"; then
+            if [ ! -e "$NIX_TOOLBOX_HM_TEMPLATE" ]; then
+                choice=$(gum choose --header "Choose Home Manager configuration template" --limit 1 \
+                    "nix-toolbox; see https://thrix.github.io/nix-toolbox/home-manager-template" \
+                    "none; empty configuration will be initialized by Home Manager"
+                )
+            else
+                choice=$(cat "$NIX_TOOLBOX_HM_TEMPLATE")
+            fi
+
+            case "$choice" in
+                nix-toolbox*)
+                    gum log -l info "Cloning nix-toolbox Home Manager template to $CONFIG_HM"
+                    echo "TODO"
+                    ;;
+                none*)
+                    gum log -l info "Installing Home Manager and initializing an empty configuration to $CONFIG_HM"
+                    gum spin --show-stdout -- nix run home-manager/master -- init --switch -b backup
+                    ;;
+            esac
+        else
+            gum log -l info "Skipped Home Manager installation"
+            touch "$NIX_TOOLBOX_HM_SKIPPED"
+        fi
     fi
 fi
 

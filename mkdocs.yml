@@ -1,0 +1,61 @@
+---
+site_name: Nix Toolbox
+site_url: https://thrix.github.io/nix-toolbox
+site_description: Fedora toolbox blended with Nix and Home Manager.
+
+# Set here explicitly as in CI preview we turn it off
+# https://www.mkdocs.org/user-guide/configuration/#use_directory_urls
+use_directory_urls: true
+
+# Repository
+repo_url: https://github.com/thrix/nix-toolbox
+edit_uri: blob/main/docs
+
+# Theme configuration
+theme:
+  name: material
+  logo: assets/nix-toolbox.png
+
+  features:
+    - search.suggest
+    - search.highlight
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue-grey
+      accent: light-blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/channels/232740312194351106/625653468262039563
+    - icon: fontawesome/brands/github
+      link: https://github.com/thrix/nix-toolbox
+
+# Navigation
+nav:
+  - Home: index.md
+
+# Extensions
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+plugins:
+  - search
