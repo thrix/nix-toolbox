@@ -48,6 +48,7 @@ extra:
 # Navigation
 nav:
   - Home: index.md
+  - Examples: examples.md
 
 # Extensions
 markdown_extensions:
