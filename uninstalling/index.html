@@ -10,26 +10,26 @@
       
       
       
-        <link rel="canonical" href="https://thrix.github.io/nix-toolbox/">
+        <link rel="canonical" href="https://thrix.github.io/nix-toolbox/uninstalling/">
+      
+      
+        <link rel="prev" href="../examples/">
       
       
       
-        <link rel="next" href="getting-started/">
-      
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Nix Toolbox</title>
+        <title>Uninstalling - Nix Toolbox</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nix-toolbox-fedora-toolbox-with-nix-and-home-manager" class="md-skip">
+        <a href="#uninstalling" class="md-skip">
           Skip to content
         </a>
       
@@ -90,9 +90,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Nix Toolbox" class="md-header__button md-logo" aria-label="Nix Toolbox" data-md-component="logo">
+    <a href=".." title="Nix Toolbox" class="md-header__button md-logo" aria-label="Nix Toolbox" data-md-component="logo">
       
-  <img src="assets/nix-toolbox.png" alt="logo">
+  <img src="../assets/nix-toolbox.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Uninstalling
             
           </span>
         </div>
@@ -227,9 +227,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Nix Toolbox" class="md-nav__button md-logo" aria-label="Nix Toolbox" data-md-component="logo">
+    <a href=".." title="Nix Toolbox" class="md-nav__button md-logo" aria-label="Nix Toolbox" data-md-component="logo">
       
-  <img src="assets/nix-toolbox.png" alt="logo">
+  <img src="../assets/nix-toolbox.png" alt="logo">
 
     </a>
     Nix Toolbox
@@ -253,19 +253,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -276,7 +267,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -288,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   
@@ -310,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="examples/" class="md-nav__link">
+      <a href="../examples/" class="md-nav__link">
         
   
   
@@ -329,10 +319,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="uninstalling/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -343,6 +342,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -384,15 +384,13 @@
   
 
 
-<h1 id="nix-toolbox-fedora-toolbox-with-nix-and-home-manager">Nix Toolbox - Fedora Toolbox 🌶️ with Nix and Home Manager<a class="headerlink" href="#nix-toolbox-fedora-toolbox-with-nix-and-home-manager" title="Permanent link">&para;</a></h1>
-<p>This project builds on top of <a href="https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/">Fedora Toolbox</a> container image and adds Nix package manager and optionally Home Manager for the following benefits:</p>
-<ul>
-<li>The easiest way to get Nix and Home Manager working on <a href="https://fedoraproject.org/atomic-desktops/">Fedora Atomic Desktops</a></li>
-<li>Simple access to 100k+ packages in the <a href="https://search.nixos.org/packages">Nix Packages</a> collection</li>
-<li>Support for Nix-based development environment used by various open-source projects</li>
-<li>Use Home Manager to manage your home environment as code, and partially also system environment</li>
-</ul>
-<p>Follow <a href="https://thrix.github.io/nix-toolbox/getting-started">Getting Started</a> to try out Nix Toolbox.</p>
+<h1 id="uninstalling">Uninstalling<a class="headerlink" href="#uninstalling" title="Permanent link">&para;</a></h1>
+<p>To remove Nix Toolbox from your system, delete the toolbox container:</p>
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>nix-toolbox-42
+</code></pre></div>
+<p>To remove the nix store and the links to Nix programs:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rm<span class="w"> </span>-rvf<span class="w"> </span>~/.local/share/nix/<span class="w"> </span>~/.nix-profile
+</code></pre></div>
 
 
 
@@ -462,10 +460,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["search.suggest", "search.highlight"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

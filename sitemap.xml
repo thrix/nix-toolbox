@@ -8,4 +8,12 @@
          <loc>https://thrix.github.io/nix-toolbox/examples/</loc>
          <lastmod>2025-06-12</lastmod>
     </url>
+    <url>
+         <loc>https://thrix.github.io/nix-toolbox/getting-started/</loc>
+         <lastmod>2025-06-12</lastmod>
+    </url>
+    <url>
+         <loc>https://thrix.github.io/nix-toolbox/uninstalling/</loc>
+         <lastmod>2025-06-12</lastmod>
+    </url>
 </urlset>
