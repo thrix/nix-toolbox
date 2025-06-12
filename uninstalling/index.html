@@ -389,7 +389,10 @@
 <div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>nix-toolbox-42
 </code></pre></div>
 <p>To remove the nix store and the links to Nix programs:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rm<span class="w"> </span>-rvf<span class="w"> </span>~/.local/share/nix/<span class="w"> </span>~/.nix-profile
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.local/share/nix/<span class="w"> </span>~/.nix-profile<span class="w"> </span>~/.config/nix-toolbox
+</code></pre></div>
+<p>To remove also the Home Manager configuration:</p>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>~/.config/home-manager
 </code></pre></div>
 
 
