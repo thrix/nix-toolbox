@@ -42,7 +42,7 @@ if [ ! -e "/nix" ]; then
 
 Running first-time setup.
 
-See [getting started documentation](https://thrix.github.io/nix-toolbox/getting-started)
+See [getting started documentation](https://thrix.github.io/nix-toolbox/#getting-started)
 for more information.
 EOF
 
@@ -79,6 +79,8 @@ if ! command -v home-manager >/dev/null && [ ! -e "$NIX_TOOLBOX_HM_SKIPPED" ]; t
         gum spin -- nix run home-manager/master -- switch -b backup
     else
         if [ -e "$NIX_TOOLBOX_HM_SETUP" ] || gum confirm "Setup Home Manager?"; then
+            # TODO: remove once more templates available
+            NIX_TOOLBOX_HM_TEMPLATE="none"
             if [ ! -e "$NIX_TOOLBOX_HM_TEMPLATE" ]; then
                 choice=$(gum choose --header "Choose Home Manager configuration template" --limit 1 \
                     "nix-toolbox; see https://thrix.github.io/nix-toolbox/home-manager-template" \
