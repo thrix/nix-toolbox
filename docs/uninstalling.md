@@ -9,5 +9,11 @@ toolbox rm -f nix-toolbox-42
 To remove the nix store and the links to Nix programs:
 
 ```shell
-sudo rm -rvf ~/.local/share/nix/ ~/.nix-profile
+sudo rm -rf ~/.local/share/nix/ ~/.nix-profile ~/.config/nix-toolbox
+```
+
+To remove also the Home Manager configuration:
+
+```shell
+rm -rf ~/.config/home-manager
 ```

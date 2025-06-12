@@ -2,9 +2,9 @@
 
 This project builds on top of [Fedora Toolbox](https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/) container image and adds Nix package manager and optionally Home Manager for the following benefits:
 
-* The easiest way to get Nix and Home Manager working on [Fedora Atomic Desktops](https://fedoraproject.org/atomic-desktops/)
+* The easiest way to get [Nix](https://nixos.org/learn/) and [Home Manager](https://nix-community.github.io/home-manager/) working on [Fedora Atomic Desktops](https://fedoraproject.org/atomic-desktops/)
 * Simple access to 100k+ packages in the [Nix Packages](https://search.nixos.org/packages) collection
-* Support for Nix-based development environment used by various open-source projects
+* Support for [Nix-based development environment](https://nixos-and-flakes.thiscute.world/development/intro) used by various open-source projects
 * Use Home Manager to manage your home environment as code, and partially also system environment
 
 Follow [Getting Started](https://thrix.github.io/nix-toolbox/getting-started) to try out Nix Toolbox.
