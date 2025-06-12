@@ -31,6 +31,10 @@ The Nix and Home Manager setup is then performed when you first time enter the c
 toolbox enter nix-toolbox-42
 ```
 
+??? Example output
+
+    [![asciicast](https://asciinema.org/a/C26dviDAvqNMuwI5L6BsKCreh.svg)](https://asciinema.org/a/C26dviDAvqNMuwI5L6BsKCreh)
+
 !!! note
 
     Do not be afraid, the next start of the container will be as quick as with Fedora Toolbox.
