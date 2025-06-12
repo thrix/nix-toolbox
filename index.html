@@ -314,6 +314,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#uninstalling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uninstalling
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -374,6 +383,15 @@
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
       Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstalling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uninstalling
     </span>
   </a>
   
@@ -444,6 +462,13 @@ We are planning to throw out a more reasonable template later for easier onboard
 </div>
 <p>The home manager configuration is available at <code>~/.config/home-manager/home.nix</code>.
 When changing the Home Manager configuration it is a good practice to put it under revision control to keep history of your changes to be able to easily replicate the setup on another computer.</p>
+<h2 id="uninstalling">Uninstalling<a class="headerlink" href="#uninstalling" title="Permanent link">&para;</a></h2>
+<p>To remove Nix Toolbox from your system, delete the toolbox container:</p>
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>nix-toolbox-42
+</code></pre></div>
+<p>To remove the nix store and the links to Nix programs:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rm<span class="w"> </span>-rvf<span class="w"> </span>~/.local/share/nix/<span class="w"> </span>~/.nix-profile
+</code></pre></div>
 
 
 
