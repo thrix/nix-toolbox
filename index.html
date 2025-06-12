@@ -14,6 +14,8 @@
       
       
       
+        <link rel="next" href="examples/">
+      
       
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fedora-toolbox-with-nix-and-home-manager" class="md-skip">
+        <a href="#nix-toolbox-fedora-toolbox-with-nix-and-home-manager" class="md-skip">
           Skip to content
         </a>
       
@@ -263,6 +265,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="." class="md-nav__link md-nav__link--active">
         
   
@@ -275,6 +290,56 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -299,6 +364,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -316,14 +398,52 @@
   
 
 
-<h1 id="fedora-toolbox-with-nix-and-home-manager">Fedora Toolbox 🌶️ with Nix and Home Manager<a class="headerlink" href="#fedora-toolbox-with-nix-and-home-manager" title="Permanent link">&para;</a></h1>
-<p>This project builds on top of Fedora Toolbx container image and adds Nix package manager and optionally Home Manager for the following benefits:</p>
+<h1 id="nix-toolbox-fedora-toolbox-with-nix-and-home-manager">Nix Toolbox - Fedora Toolbox 🌶️ with Nix and Home Manager<a class="headerlink" href="#nix-toolbox-fedora-toolbox-with-nix-and-home-manager" title="Permanent link">&para;</a></h1>
+<p>This project builds on top of <a href="https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/">Fedora Toolbox</a> container image and adds Nix package manager and optionally Home Manager for the following benefits:</p>
 <ul>
-<li>Dead simple to access 100k+ packages in the Nix package manager from Fedora Silverblue variants and Fedora Image Mode systems</li>
-<li>Make it easy to re-create development environments using Nix without too much work</li>
-<li>Use Home Manager to manage configuration of Fedora packages,</li>
-<li>Bring Fedora and Nix ecosystems closer together</li>
+<li>The easiest way to get Nix and Home Manager working on Fedora Silverblue and it's flavors</li>
+<li>Simple access to 100k+ packages in the <a href="https://search.nixos.org/packages">Nix Packages</a> collection</li>
+<li>Support for Nix-based development environment used by various open-source projects</li>
+<li>Use Home Manager to manage your home environment as code, and partially also system environment</li>
 </ul>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<p>Starting with Nix Toolbox is really simple.
+Make sure you are running a system with <a href="https://containertoolbx.org/">Toolbx</a> installed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are investigating how to run Nix Toolbox with <code>distrobox</code>.
+Until that time, using of <code>toolbox</code> is required.</p>
+</div>
+<p>Create Nix Toolbox container</p>
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:42
+</code></pre></div>
+<p>This will create the <code>nix-toolbox</code> the container.</p>
+<p>The Nix and Home Manager setup is then performed when you first time enter the container:</p>
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-42
+</code></pre></div>
+<details class="info">
+<summary>Example output</summary>
+<div class="highlight"><pre><span></span><code>TBD
+</code></pre></div>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not be afraid, the next start of the container will be as quick as with Fedora Toolbox.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on your setup, the first time setup can take a long time, especially if you already have some Home Manager configuration available.</p>
+</div>
+<p>The Home Manager configuration is optional, and you can skip it to have only the <code>nix</code> command.</p>
+<p>After the Nix is installed, you can opt-in to install Home Manager.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Currently, the project provides an empty Home Manager configuration.
+Please take a look at the <a href="examples/">Examples</a> to get most out of Nix Toolbox.
+We are planning to throw out a more reasonable template later for easier onboarding.</p>
+</div>
+<p>The home manager configuration is available at <code>~/.config/home-manager/home.nix</code>.
+When changing the Home Manager configuration it is a good practice to put it under revision control to keep history of your changes to be able to easily replicate the setup on another computer.</p>
 
 
 
