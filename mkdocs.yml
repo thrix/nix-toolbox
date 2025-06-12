@@ -48,7 +48,10 @@ extra:
 # Navigation
 nav:
   - Home: index.md
+  - Getting Started: getting-started.md
   - Examples: examples.md
+  - Uninstalling: uninstalling.md
+
 
 # Extensions
 markdown_extensions:
