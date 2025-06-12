@@ -57,3 +57,17 @@ After the Nix is installed, you can opt-in to install Home Manager.
 
 The home manager configuration is available at `~/.config/home-manager/home.nix`.
 When changing the Home Manager configuration it is a good practice to put it under revision control to keep history of your changes to be able to easily replicate the setup on another computer.
+
+## Uninstalling
+
+To remove Nix Toolbox from your system, delete the toolbox container:
+
+```shell
+toolbox rm -f nix-toolbox-42
+```
+
+To remove the nix store and the links to Nix programs:
+
+```shell
+sudo rm -rvf ~/.local/share/nix/ ~/.nix-profile
+```
