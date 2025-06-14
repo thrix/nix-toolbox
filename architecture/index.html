@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://thrix.github.io/nix-toolbox/getting-started/">
+        <link rel="canonical" href="https://thrix.github.io/nix-toolbox/architecture/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../getting-started/">
       
       
-        <link rel="next" href="../architecture/">
+        <link rel="next" href="../examples/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Getting Started - Nix Toolbox</title>
+        <title>Architecture - Nix Toolbox</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started" class="md-skip">
+        <a href="#architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting Started
+              Architecture
             
           </span>
         </div>
@@ -277,6 +277,28 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -289,30 +311,20 @@
         
       
       
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
   
   
   <span class="md-ellipsis">
-    Getting Started
+    Architecture
     
   </span>
   
 
-      </a>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -323,6 +335,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-image-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Image Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-nixsh-profile-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      The nix.sh Profile Script
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The nix.sh Profile Script">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nix-installation-and-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nix Installation and Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home-manager-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Home Manager Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-experience-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Experience Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-fedora-atomic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with Fedora Atomic
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -413,6 +550,119 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-image-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Image Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-nixsh-profile-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      The nix.sh Profile Script
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The nix.sh Profile Script">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nix-installation-and-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nix Installation and Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home-manager-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Home Manager Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-experience-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Experience Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-fedora-atomic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with Fedora Atomic
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -430,43 +680,101 @@
   
 
 
-<h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<p>Starting with Nix Toolbox is really simple.
-Make sure you are running a system with <a href="https://containertoolbx.org/">Toolbx</a> installed.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>We are investigating how to run Nix Toolbox with <code>distrobox</code>.
-Until that time, using of <code>toolbox</code> is required.</p>
-</div>
-<p>Create Nix Toolbox container</p>
-<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:42
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
+<p>This page describes the technical architecture of nix-toolbox and how it integrates Nix and Home Manager into a Fedora Toolbox container.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Nix-toolbox is built on top of <a href="https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/">Fedora Toolbox</a>, extending it with the Nix package manager and optional Home Manager support.
+The architecture follows a layered approach:</p>
+<ol>
+<li><strong>Base Layer</strong>: Fedora Toolbox container image</li>
+<li><strong>Enhancement Layer</strong>: Nix package manager installation and configuration</li>
+<li><strong>Management Layer</strong>: Home Manager for declarative environment management</li>
+<li><strong>Integration Layer</strong>: Profile script for seamless user experience</li>
+</ol>
+<h2 id="container-image-structure">Container Image Structure<a class="headerlink" href="#container-image-structure" title="Permanent link">&para;</a></h2>
+<p>The nix-toolbox container is built using a simple <code>Containerfile</code> that:</p>
+<ul>
+<li>Extends the official <code>registry.fedoraproject.org/fedora-toolbox</code> image</li>
+<li>Installs <a href="https://github.com/charmbracelet/gum">gum</a> for enhanced CLI user experience</li>
+<li>Copies the <code>nix.sh</code> profile script to <code>/etc/profile.d/</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">registry.fedoraproject.org/fedora-toolbox:$FEDORA_VERSION</span>
+<span class="k">RUN</span><span class="w"> </span>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>gum
+<span class="k">COPY</span><span class="w"> </span>nix.sh<span class="w"> </span>/etc/profile.d/nix.sh
 </code></pre></div>
-<p>This will create the <code>nix-toolbox</code> the container.</p>
-<p>The Nix and Home Manager setup is then performed when you first time enter the container:</p>
-<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-42
-</code></pre></div>
-<details class="example output">
-<summary>Example</summary>
-<p><a href="https://asciinema.org/a/C26dviDAvqNMuwI5L6BsKCreh"><img alt="asciicast" src="https://asciinema.org/a/C26dviDAvqNMuwI5L6BsKCreh.svg" /></a></p>
-</details>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Do not be afraid, the next start of the container will be as quick as with Fedora Toolbox.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Depending on your setup, the first time setup can take a long time, especially if you already have some Home Manager configuration available.</p>
-</div>
-<p>The Home Manager configuration is optional, and you can skip it to have only the <code>nix</code> command.</p>
-<p>After the Nix is installed, you can opt-in to install Home Manager.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Currently, the project provides an empty Home Manager configuration.
-Please take a look at the <a href="../examples/">Examples</a> to get most out of Nix Toolbox.
-We are planning to throw out a more reasonable template later for easier onboarding.</p>
-</div>
-<p>The home manager configuration is available at <code>~/.config/home-manager/home.nix</code>.
-When changing the Home Manager configuration it is a good practice to put it under revision control to keep history of your changes to be able to easily replicate the setup on another computer.</p>
+<h2 id="the-nixsh-profile-script">The nix.sh Profile Script<a class="headerlink" href="#the-nixsh-profile-script" title="Permanent link">&para;</a></h2>
+<p>The core of nix-toolbox's functionality is the <code>nix.sh</code> profile script located at <code>/etc/profile.d/nix.sh</code>.
+This script is automatically executed when users start a shell session in the container and handles:</p>
+<h3 id="environment-setup">Environment Setup<a class="headerlink" href="#environment-setup" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>XDG Compliance</strong>: Ensures <code>XDG_DATA_HOME</code> and <code>XDG_CONFIG_HOME</code> are properly set</li>
+<li><strong>Home Directory</strong>: Resolves symlinks in <code>$HOME</code> since Nix requires a real path</li>
+<li><strong>Configuration Directory</strong>: Creates <code>~/.config/nix-toolbox/</code> for storing nix-toolbox specific settings</li>
+</ul>
+<h3 id="nix-installation-and-management">Nix Installation and Management<a class="headerlink" href="#nix-installation-and-management" title="Permanent link">&para;</a></h3>
+<p>The script implements a sophisticated Nix installation strategy:</p>
+<ol>
+<li><strong>Detection</strong>: Checks if <code>/nix</code> directory exists</li>
+<li><strong>First-time Setup</strong>: If no Nix store is found:</li>
+<li>Enables <code>nix-command</code> and <code>flakes</code> in <code>/etc/nix/nix.conf</code></li>
+<li>Creates a bind mount from <code>$XDG_DATA_HOME/nix</code> to <code>/nix</code></li>
+<li>Installs Nix in single-user mode via the official installer</li>
+<li><strong>Runtime Mount</strong>: Ensures <code>/nix</code> is properly mounted on each container start</li>
+<li><strong>Environment Sourcing</strong>: Sources the Nix environment from <code>~/.nix-profile/etc/profile.d/nix.sh</code></li>
+</ol>
+<h3 id="storage-strategy">Storage Strategy<a class="headerlink" href="#storage-strategy" title="Permanent link">&para;</a></h3>
+<p>Nix-toolbox uses a bind mount approach for persistent storage:</p>
+<ul>
+<li><strong>Host Storage</strong>: Nix store is persisted in <code>$XDG_DATA_HOME/nix</code> on the host</li>
+<li><strong>Container Mount</strong>: Bind-mounted to <code>/nix</code> inside the container</li>
+<li><strong>Benefits</strong>:</li>
+<li>Survives container recreation</li>
+<li>Shares storage between multiple nix-toolbox containers</li>
+<li>Keeps the Nix store outside the container filesystem</li>
+</ul>
+<h3 id="home-manager-integration">Home Manager Integration<a class="headerlink" href="#home-manager-integration" title="Permanent link">&para;</a></h3>
+<p>The script provides optional Home Manager installation with user choice:</p>
+<ol>
+<li><strong>Detection</strong>: Checks if Home Manager is already installed</li>
+<li><strong>Existing Configuration</strong>: If <code>~/.config/home-manager</code> exists, uses it directly</li>
+<li><strong>Template Selection</strong>: Offers users a choice between:</li>
+<li>nix-toolbox template (future feature)</li>
+<li>Empty configuration initialized by Home Manager</li>
+<li><strong>Installation</strong>: Uses <code>nix run home-manager/master</code> for installation</li>
+<li><strong>Skip Option</strong>: Allows users to skip Home Manager entirely</li>
+</ol>
+<h3 id="user-experience-features">User Experience Features<a class="headerlink" href="#user-experience-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Interactive Prompts</strong>: Uses <code>gum</code> for enhanced CLI interactions</li>
+<li><strong>Progress Indication</strong>: Shows spinners during long-running operations</li>
+<li><strong>Logging</strong>: Provides clear status messages using <code>gum log</code></li>
+<li><strong>Error Handling</strong>: Validates dependencies and provides meaningful error messages</li>
+<li><strong>History Cleanup</strong>: Clears shell history to avoid polluting user sessions</li>
+</ul>
+<h2 id="configuration-management">Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">&para;</a></h2>
+<p>Nix-toolbox maintains several configuration files in <code>~/.config/nix-toolbox/</code>:</p>
+<ul>
+<li><code>home-manager.skipped</code>: Marker file when user skips Home Manager</li>
+<li><code>home-manager.setup</code>: Marker file for automated Home Manager setup</li>
+<li><code>home-manager.template</code>: Stores user's template choice</li>
+</ul>
+<h2 id="integration-with-fedora-atomic">Integration with Fedora Atomic<a class="headerlink" href="#integration-with-fedora-atomic" title="Permanent link">&para;</a></h2>
+<p>The architecture is specifically designed for Fedora Atomic Desktops:</p>
+<ul>
+<li><strong>Immutable Host</strong>: Respects the immutable nature of the host filesystem</li>
+<li><strong>User Space</strong>: All modifications happen in user space or containers</li>
+<li><strong>XDG Standards</strong>: Follows XDG Base Directory specifications</li>
+<li><strong>Toolbox Compatibility</strong>: Maintains full compatibility with existing toolbox workflows</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Single-user Mode</strong>: Nix is installed in single-user mode, avoiding multi-user daemon complexity</li>
+<li><strong>Sudo Requirements</strong>: Minimal sudo usage inside the container only for:</li>
+<li>Creating <code>/etc/nix/nix.conf</code></li>
+<li>Setting up the <code>/nix</code> bind mount</li>
+<li><strong>User Permissions</strong>: All package installations and Home Manager operations run as the user</li>
+</ul>
+<p>This architecture provides a seamless integration of Nix ecosystem tools while maintaining the simplicity and isolation benefits of Fedora Toolbox.</p>
 
 
 
