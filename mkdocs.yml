@@ -49,6 +49,7 @@ extra:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
+  - Architecture: architecture.md
   - Issues: https://github.com/thrix/nix-toolbox/issues
   - Examples: examples.md
   - Uninstalling: uninstalling.md

@@ -8,3 +8,5 @@ This project builds on top of [Fedora Toolbox](https://docs.fedoraproject.org/en
 * Use Home Manager to manage your home environment as code, and partially also system environment
 
 Follow [Getting Started](https://thrix.github.io/nix-toolbox/getting-started) to try out Nix Toolbox.
+
+The project was introduce at DevConf.CZ 2025 conference, you can find the talk [here](https://pretalx.devconf.info/devconf-cz-2025/talk/G9JURJ/).
