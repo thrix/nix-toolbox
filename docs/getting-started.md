@@ -1,30 +1,37 @@
 # Getting Started
 
 Starting with Nix Toolbox is really simple.
-Make sure you are running a system with [Toolbx](https://containertoolbx.org/) installed.
-
-!!! note
-
-    We are investigating how to run Nix Toolbox with `distrobox`.
-    Until that time, using of `toolbox` is required.
+Make sure you are running a system with [Toolbx](https://containertoolbx.org/) or [Distrobox](https://distrobox.it/) installed.
 
 Create Nix Toolbox container
 
-```shell
-toolbox create --image ghcr.io/thrix/nix-toolbox:42
-```
+=== "Toolbox"
+
+    ```shell
+    toolbox create --image ghcr.io/thrix/nix-toolbox:42
+    ```
+
+=== "Distrobox"
+
+    ```shell
+    distrobox create --image ghcr.io/thrix/nix-toolbox:42
+    ```
 
 This will create the `nix-toolbox` the container.
 
 The Nix and Home Manager setup is then performed when you first time enter the container:
 
-```shell
-toolbox enter nix-toolbox-42
-```
+=== "Toolbox"
 
-??? Example output
+    ```shell
+    toolbox enter nix-toolbox-42
+    ```
 
-    [![asciicast](https://asciinema.org/a/C26dviDAvqNMuwI5L6BsKCreh.svg)](https://asciinema.org/a/C26dviDAvqNMuwI5L6BsKCreh)
+=== "Distrobox"
+
+    ```shell
+    distrobox enter nix-toolbox-42
+    ```
 
 !!! note
 
