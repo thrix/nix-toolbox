@@ -432,23 +432,34 @@
 
 <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
 <p>Starting with Nix Toolbox is really simple.
-Make sure you are running a system with <a href="https://containertoolbx.org/">Toolbx</a> installed.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>We are investigating how to run Nix Toolbox with <code>distrobox</code>.
-Until that time, using of <code>toolbox</code> is required.</p>
-</div>
+Make sure you are running a system with <a href="https://containertoolbx.org/">Toolbx</a> or <a href="https://distrobox.it/">Distrobox</a> installed.</p>
 <p>Create Nix Toolbox container</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Toolbox</label><label for="__tabbed_1_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:42
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:42
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>This will create the <code>nix-toolbox</code> the container.</p>
 <p>The Nix and Home Manager setup is then performed when you first time enter the container:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Toolbox</label><label for="__tabbed_2_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-42
 </code></pre></div>
-<details class="example output">
-<summary>Example</summary>
-<p><a href="https://asciinema.org/a/C26dviDAvqNMuwI5L6BsKCreh"><img alt="asciicast" src="https://asciinema.org/a/C26dviDAvqNMuwI5L6BsKCreh.svg" /></a></p>
-</details>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-42
+</code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Do not be afraid, the next start of the container will be as quick as with Fedora Toolbox.</p>
@@ -484,6 +495,8 @@ When changing the Home Manager configuration it is a good practice to put it und
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -536,7 +549,7 @@ When changing the Home Manager configuration it is a good practice to put it und
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
