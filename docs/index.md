@@ -1,5 +1,7 @@
 # Nix Toolbox - Fedora Toolbox 🌶️ with Nix and Home Manager
 
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue?logo=github)](https://thrix.github.io/nix-toolbox)
+
 This project builds on top of [Fedora Toolbox](https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/) container image and adds Nix package manager and optionally Home Manager for the following benefits:
 
 * The easiest way to get [Nix](https://nixos.org/learn/) and [Home Manager](https://nix-community.github.io/home-manager/) working on [Fedora](https://fedoraproject.org) and [Fedora Atomic Desktops](https://fedoraproject.org/atomic-desktops/)
