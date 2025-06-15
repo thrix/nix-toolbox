@@ -19,6 +19,7 @@ theme:
   features:
     - search.suggest
     - search.highlight
+    - content.tabs.link
 
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -62,6 +63,8 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 
 plugins:
   - search
