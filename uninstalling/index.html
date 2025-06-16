@@ -430,8 +430,18 @@
 
 <h1 id="uninstalling">Uninstalling<a class="headerlink" href="#uninstalling" title="Permanent link">&para;</a></h1>
 <p>To remove Nix Toolbox from your system, delete the toolbox container:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Toolbox</label><label for="__tabbed_1_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>nix-toolbox-42
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>nix-toolbox-42
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>To remove the nix store and the links to Nix programs:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.local/share/nix/<span class="w"> </span>~/.nix-profile<span class="w"> </span>~/.config/nix-toolbox
 </code></pre></div>
