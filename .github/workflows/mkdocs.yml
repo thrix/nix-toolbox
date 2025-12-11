@@ -12,6 +12,10 @@ jobs:
   mkdocs:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      issues: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -32,10 +36,23 @@ jobs:
       - name: Build MkDocs site
         run: make docs
 
+      - name: Set destination dir
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "DEST_DIR=preview/pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          else
+            echo "DEST_DIR=" >> $GITHUB_ENV
+          fi
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.PERSONAL_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
-          publish_branch: ${{ github.event_name == 'pull_request' && format('gh-pages-pr-{0}', github.event.pull_request.number) || 'gh-pages' }}
-          keep_files: true
+          destination_dir: ${{ env.DEST_DIR }}
+
+      - name: Add preview link to step summary
+        if: github.event_name == 'pull_request'
+        run: |
+          PREVIEW_URL="https://${{ github.repository_owner }}.github.io/${GITHUB_REPOSITORY##*/}/preview/pr-${{ github.event.pull_request.number }}/"
+          echo "[$PREVIEW_URL]($PREVIEW_URL)" >> $GITHUB_STEP_SUMMARY
