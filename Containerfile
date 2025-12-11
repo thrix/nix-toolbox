@@ -11,4 +11,4 @@ LABEL com.github.containers.toolbox="true" \
 
 RUN dnf -y install gum
 
-COPY nix.sh /etc/profile.d/nix.sh
+COPY nix.sh /etc/profile.d/
