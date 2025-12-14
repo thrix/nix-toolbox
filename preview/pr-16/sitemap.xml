@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://thrix.github.io/nix-toolbox/</loc>
+         <lastmod>2025-12-14</lastmod>
+    </url>
+    <url>
+         <loc>https://thrix.github.io/nix-toolbox/architecture/</loc>
+         <lastmod>2025-12-14</lastmod>
+    </url>
+    <url>
+         <loc>https://thrix.github.io/nix-toolbox/examples/</loc>
+         <lastmod>2025-12-14</lastmod>
+    </url>
+    <url>
+         <loc>https://thrix.github.io/nix-toolbox/getting-started/</loc>
+         <lastmod>2025-12-14</lastmod>
+    </url>
+    <url>
+         <loc>https://thrix.github.io/nix-toolbox/uninstalling/</loc>
+         <lastmod>2025-12-14</lastmod>
+    </url>
+</urlset>
