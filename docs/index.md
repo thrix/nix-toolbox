@@ -2,6 +2,7 @@
 
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue?logo=github)](https://thrix.github.io/nix-toolbox)
 [![DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/thrix/nix-toolbox)
+[![pre-commit.ci](https://results.pre-commit.ci/badge/github/thrix/nix-toolbox/main.svg)](https://results.pre-commit.ci/latest/github/thrix/nix-toolbox/main)
 
 This project builds on top of [Fedora Toolbox](https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/) container image and adds Nix package manager and optionally Home Manager for the following benefits:
 
