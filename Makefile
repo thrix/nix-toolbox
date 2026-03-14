@@ -8,7 +8,7 @@
 ROOT_DIR = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 # Fedora toolbox version
-FEDORA_VERSION=42
+FEDORA_VERSION=43
 
 # Help prelude
 define PRELUDE
@@ -33,6 +33,11 @@ docs: .FORCE  ## Build documentation locally
 
 docs/serve: .FORCE  ## Run documentation development server
 	uv run mkdocs serve
+
+##@ Generate
+
+generate/build-fmf: .FORCE  ## Regenerate tmt/build.fmf from current Fedora active releases
+	uv run python scripts/generate-build-fmf.py
 
 ##@ Container
 

@@ -1,0 +1,32 @@
+summary: Build and push nix-toolbox container images for all active Fedora releases.
+
+environment:
+  GIT_URL: https://github.com/thrix/nix-toolbox
+  GIT_REF: main
+  CONTAINER_FILE: Containerfile
+  BUILD_DIR: .
+
+discover:
+  how: fmf
+  url: https://gitlab.com/testing-farm/tests
+  test:
+    - /container/build
+
+provision:
+  how: container
+  image: quay.io/buildah/stable
+
+execute:
+  how: tmt
+{% for version in versions %}
+
+/f{{ version }}:
+  environment+:
+    BUILD_ARGS: "FEDORA_VERSION={{ version }}"
+    TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:{{ version }}
+{% endfor %}
+
+/rawhide:
+  environment+:
+    BUILD_ARGS: "FEDORA_VERSION=rawhide"
+    TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:rawhide
