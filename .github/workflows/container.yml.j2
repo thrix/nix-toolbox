@@ -21,13 +21,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - version: "42"
-            plan: /tmt/build/f42
-          - version: "43"
-            plan: /tmt/build/f43
+        {% for version in versions %}
+          - version: "{{ version }}"
+            plan: /tmt/build/f{{ version }}
+        {% endfor %}
           - version: rawhide
             plan: /tmt/build/rawhide
-
+{% raw %}
     container:
       image: quay.io/testing-farm/cli:latest
 
@@ -58,3 +58,4 @@ jobs:
             --plan "${{ matrix.plan }}" \
             --git-url https://github.com/thrix/nix-toolbox \
             --git-ref "${GIT_SHA}"
+{% endraw %}
