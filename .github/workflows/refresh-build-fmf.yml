@@ -37,12 +37,8 @@ jobs:
         with:
           commit-message: |
             ci: regenerate build configs for current Fedora releases
-
-            Assisted-by: Claude Code
           branch: refresh-build-fmf
           title: 'ci: regenerate build configs for current Fedora releases'
           body: |
             Automated weekly refresh of `tmt/build.fmf` and `container.yml` based on active Fedora releases.
-
-            Generated-by: Claude Code
           delete-branch: true
