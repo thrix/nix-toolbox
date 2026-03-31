@@ -22,11 +22,11 @@ execute:
 
 /f{{ version }}:
   environment+:
-    BUILD_ARGS: "FEDORA_VERSION={{ version }}"
+    BUILD_ARGS: "--build-arg FEDORA_VERSION={{ version }}"
     TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:{{ version }}
 {% endfor %}
 
 /rawhide:
   environment+:
-    BUILD_ARGS: "FEDORA_VERSION=rawhide"
+    BUILD_ARGS: "--build-arg FEDORA_VERSION=rawhide"
     TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:rawhide

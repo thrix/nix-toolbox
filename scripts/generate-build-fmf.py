@@ -23,7 +23,7 @@ def get_active_fedora_versions() -> list[int]:
         sys.exit(1)
 
     versions = []
-    for distro in aliases.get("fedora-stable", []):
+    for distro in aliases.get("fedora-branched", []):
         version = distro.get("version_number")
         if version and version.isdigit():
             versions.append(int(version))

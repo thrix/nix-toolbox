@@ -21,15 +21,20 @@ execute:
 
 /f42:
   environment+:
-    BUILD_ARGS: "FEDORA_VERSION=42"
+    BUILD_ARGS: "--build-arg FEDORA_VERSION=42"
     TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:42
 
 /f43:
   environment+:
-    BUILD_ARGS: "FEDORA_VERSION=43"
+    BUILD_ARGS: "--build-arg FEDORA_VERSION=43"
     TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:43
+
+/f44:
+  environment+:
+    BUILD_ARGS: "--build-arg FEDORA_VERSION=44"
+    TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:44
 
 /rawhide:
   environment+:
-    BUILD_ARGS: "FEDORA_VERSION=rawhide"
+    BUILD_ARGS: "--build-arg FEDORA_VERSION=rawhide"
     TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:rawhide
