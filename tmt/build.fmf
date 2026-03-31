@@ -11,6 +11,9 @@ discover:
   url: https://gitlab.com/testing-farm/tests
   test:
     - /container/build
+  adjust-tests:
+    - duration: 1h
+      because: Accept the building time to be max 1 hour.
 
 provision:
   how: container
