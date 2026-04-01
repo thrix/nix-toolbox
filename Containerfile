@@ -9,6 +9,6 @@ LABEL com.github.containers.toolbox="true" \
       summary="Base image for creating Fedora toolbox containers with pre-installed Nix and optionally home-manager." \
       maintainer="Miroslav Vadkerti <mvadkert@redhat.com>"
 
-RUN dnf -y install --setopt=install_weak_deps=False gum && dnf clean all
+RUN dnf -y install --setopt=install_weak_deps=False --setopt=tsflags=nodocs gum && dnf clean all
 
 COPY nix.sh /etc/profile.d/
