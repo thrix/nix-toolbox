@@ -46,7 +46,7 @@ jobs:
       - name: Schedule build via Testing Farm
         env:
           TESTING_FARM_API_TOKEN: ${{ secrets.TESTING_FARM_API_TOKEN }}
-          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
           REPO_OWNER: ${{ github.repository_owner }}
           GIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:${{ steps.tag.outputs.value }}
