@@ -36,10 +36,14 @@ export GUM_SPIN_TITLE="Please wait, this might take a while"
 
 # Ensure /nix is bind-mounted from persistent storage
 mkdir -p "$XDG_DATA_HOME/nix"
-if [ ! -e "/nix" ]; then
-    sudo mkdir /nix
+if [ -e "/nix" ] && [ ! -d "/nix" ]; then
+    echo "ERROR: /nix exists but is not a directory; cannot bind-mount persistent Nix store." >&2
+    exit 1
 fi
-if ! mount | grep -q /nix; then
+if [ ! -d "/nix" ]; then
+    sudo mkdir -p /nix
+fi
+if ! mountpoint -q /nix; then
     sudo mount --bind "$XDG_DATA_HOME/nix" /nix
 fi
 
