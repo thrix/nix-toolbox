@@ -76,7 +76,7 @@ This will create the nix-toolbox container.
 
 ## Enter the Container
 
-The Nix and Home Manager setup is then performed when you first time enter the container:
+The Nix and Home Manager setup is then performed the first time you enter the container:
 
 === "Fedora 42"
 
@@ -166,14 +166,14 @@ Create containers for the versions you need:
 
     ```shell
     toolbox create --image ghcr.io/thrix/nix-toolbox:42
-    toolbox create --image ghcr.io/thrix/nix-toolbox:rawhide
+    toolbox create --image ghcr.io/thrix/nix-toolbox:43
     ```
 
 === "Distrobox"
 
     ```shell
     distrobox create --image ghcr.io/thrix/nix-toolbox:42
-    distrobox create --image ghcr.io/thrix/nix-toolbox:rawhide
+    distrobox create --image ghcr.io/thrix/nix-toolbox:43
     ```
 
 Then switch between them freely:
@@ -182,14 +182,14 @@ Then switch between them freely:
 
     ```shell
     toolbox enter nix-toolbox-42   # enter the first container
-    toolbox enter nix-toolbox-rawhide   # enter the second container
+    toolbox enter nix-toolbox-43   # enter the second container
     ```
 
 === "Distrobox"
 
     ```shell
     distrobox enter nix-toolbox-42   # enter the first container
-    distrobox enter nix-toolbox-rawhide   # enter the second container
+    distrobox enter nix-toolbox-43   # enter the second container
     ```
 
 !!! tip

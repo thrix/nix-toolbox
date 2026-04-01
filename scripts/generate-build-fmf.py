@@ -22,6 +22,13 @@ DOC_TEMPLATES = {
     REPO_ROOT / "docs" / "uninstalling.md.j2": REPO_ROOT / "docs" / "uninstalling.md",
 }
 
+# Map Fedora release states to human-readable labels
+STATE_LABELS = {
+    "current": None,
+    "frozen": "Branched",
+    "pending": "Branched",
+}
+
 
 @dataclass
 class Distro:
@@ -29,26 +36,26 @@ class Distro:
 
     name: str
     tag: str
-    default: bool = False
     label: str | None = None
 
 
 def get_fedora_releases() -> tuple[list[int], dict[int, str]]:
-    """Return sorted version numbers and a mapping of version -> state."""
+    """Return sorted unique version numbers and a mapping of version -> state."""
     try:
         aliases = get_distro_aliases()
     except (OSError, ValueError) as exc:
         print(f"Failed to query active Fedora releases: {exc}", file=sys.stderr)
         sys.exit(1)
 
-    versions = []
-    states = {}
+    versions: list[int] = []
+    states: dict[int, str] = {}
     for distro in aliases.get("fedora-branched", []):
         version = distro.get("version_number")
         if version and version.isdigit():
             v = int(version)
-            versions.append(v)
-            states[v] = distro.get("state", "unknown")
+            if v not in states:
+                versions.append(v)
+            states[v] = distro.get("state", "")
 
     return sorted(versions), states
 
@@ -60,30 +67,21 @@ def build_distro_list(versions: list[int], states: dict[int, str]) -> list[dict]
     distros = []
 
     for version in versions:
-        state = states.get(version, "unknown")
-        if state == "current":
-            label = "latest" if version == latest_stable else None
+        state = states.get(version, "")
+        if version == latest_stable:
+            label = "latest"
         else:
-            label = "Branched"
+            label = STATE_LABELS.get(state)
 
         distros.append(Distro(
             name=f"Fedora {version}",
             tag=str(version),
-            default=(version == latest_stable),
             label=label,
         ))
 
     distros.append(Distro(name="Fedora Rawhide", tag="rawhide", label="Development"))
 
     return [d.__dict__ for d in distros]
-
-
-def render_template(template_path: Path, output_path: Path, context: dict) -> None:
-    template_text = template_path.read_text()
-    template = jinja2.Template(template_text, keep_trailing_newline=True, trim_blocks=True, lstrip_blocks=True)
-    output = template.render(**context)
-    output_path.write_text(output)
-    print(f"Written: {output_path}")
 
 
 def main() -> None:
@@ -95,12 +93,27 @@ def main() -> None:
     print(f"Active Fedora releases: {versions}")
 
     distros = build_distro_list(versions, states)
+    stable_versions = [v for v in versions if states.get(v) == "current"]
+    latest_stable = max(stable_versions) if stable_versions else max(versions)
 
     for template_path, output_path in CI_TEMPLATES.items():
         render_template(template_path, output_path, {"versions": versions})
 
+    doc_context = {
+        "distros": distros,
+        "oldest": str(versions[0]),
+        "latest": str(latest_stable),
+    }
     for template_path, output_path in DOC_TEMPLATES.items():
-        render_template(template_path, output_path, {"distros": distros})
+        render_template(template_path, output_path, doc_context)
+
+
+def render_template(template_path: Path, output_path: Path, context: dict) -> None:
+    template_text = template_path.read_text()
+    template = jinja2.Template(template_text, keep_trailing_newline=True, trim_blocks=True, lstrip_blocks=True)
+    output = template.render(**context)
+    output_path.write_text(output)
+    print(f"Written: {output_path}")
 
 
 if __name__ == "__main__":

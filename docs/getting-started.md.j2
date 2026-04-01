@@ -40,7 +40,7 @@ This will create the nix-toolbox container.
 
 ## Enter the Container
 
-The Nix and Home Manager setup is then performed when you first time enter the container:
+The Nix and Home Manager setup is then performed the first time you enter the container:
 
 {% for distro in distros %}
 {% if distro.label %}
@@ -94,15 +94,15 @@ Create containers for the versions you need:
 === "Toolbox"
 
     ```shell
-    toolbox create --image ghcr.io/thrix/nix-toolbox:{{ distros[0].tag }}
-    toolbox create --image ghcr.io/thrix/nix-toolbox:{{ distros[-1].tag }}
+    toolbox create --image ghcr.io/thrix/nix-toolbox:{{ oldest }}
+    toolbox create --image ghcr.io/thrix/nix-toolbox:{{ latest }}
     ```
 
 === "Distrobox"
 
     ```shell
-    distrobox create --image ghcr.io/thrix/nix-toolbox:{{ distros[0].tag }}
-    distrobox create --image ghcr.io/thrix/nix-toolbox:{{ distros[-1].tag }}
+    distrobox create --image ghcr.io/thrix/nix-toolbox:{{ oldest }}
+    distrobox create --image ghcr.io/thrix/nix-toolbox:{{ latest }}
     ```
 
 Then switch between them freely:
@@ -110,15 +110,15 @@ Then switch between them freely:
 === "Toolbox"
 
     ```shell
-    toolbox enter nix-toolbox-{{ distros[0].tag }}   # enter the first container
-    toolbox enter nix-toolbox-{{ distros[-1].tag }}   # enter the second container
+    toolbox enter nix-toolbox-{{ oldest }}   # enter the first container
+    toolbox enter nix-toolbox-{{ latest }}   # enter the second container
     ```
 
 === "Distrobox"
 
     ```shell
-    distrobox enter nix-toolbox-{{ distros[0].tag }}   # enter the first container
-    distrobox enter nix-toolbox-{{ distros[-1].tag }}   # enter the second container
+    distrobox enter nix-toolbox-{{ oldest }}   # enter the first container
+    distrobox enter nix-toolbox-{{ latest }}   # enter the second container
     ```
 
 !!! tip
