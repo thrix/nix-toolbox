@@ -97,6 +97,16 @@ wheels = [
 ]
 
 [[package]]
+name = "fedora-distro-aliases"
+version = "1.8"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "munch" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/37/25/6270d969dbb89ad5c810ea1bb5119109d168899ba90314e5626673a9f989/fedora_distro_aliases-1.8.tar.gz", hash = "sha256:8e59bb968241dbdcf50ac909ead252cdda82e50a252f147aa391086b966b85fd", size = 7514, upload-time = "2025-10-25T11:56:38.447Z" }
+
+[[package]]
 name = "ghp-import"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -269,16 +279,29 @@ wheels = [
 ]
 
 [[package]]
+name = "munch"
+version = "4.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e7/2b/45098135b5f9f13221820d90f9e0516e11a2a0f55012c13b081d202b782a/munch-4.0.0.tar.gz", hash = "sha256:542cb151461263216a4e37c3fd9afc425feeaf38aaa3025cd2a981fadb422235", size = 19089, upload-time = "2023-07-01T09:49:35.98Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/56/b3/7c69b37f03260a061883bec0e7b05be7117c1b1c85f5212c72c8c2bc3c8c/munch-4.0.0-py2.py3-none-any.whl", hash = "sha256:71033c45db9fb677a0b7eb517a4ce70ae09258490e419b0e7f00d1e386ecb1b4", size = 9950, upload-time = "2023-07-01T09:49:34.472Z" },
+]
+
+[[package]]
 name = "nix-toolbox"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "fedora-distro-aliases" },
+    { name = "jinja2" },
     { name = "mkdocs" },
     { name = "mkdocs-material" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "fedora-distro-aliases", specifier = ">=1.0" },
+    { name = "jinja2", specifier = ">=3.1" },
     { name = "mkdocs", specifier = ">=1.6.1" },
     { name = "mkdocs-material", specifier = ">=9.6.14" },
 ]

@@ -1,0 +1,61 @@
+---
+name: Container Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: write
+
+    strategy:
+      matrix:
+        include:
+        {% for version in versions %}
+          - version: "{{ version }}"
+            plan: /tmt/build/f{{ version }}
+        {% endfor %}
+          - version: rawhide
+            plan: /tmt/build/rawhide
+{% raw %}
+    container:
+      image: quay.io/testing-farm/cli:latest
+
+    steps:
+      - name: Compute image tag
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "value=pr-${{ github.event.number }}-${{ matrix.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "value=${{ matrix.version }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Schedule build via Testing Farm
+        env:
+          TESTING_FARM_API_TOKEN: ${{ secrets.TESTING_FARM_API_TOKEN }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          GIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:${{ steps.tag.outputs.value }}
+        run: |
+          AUTH_JSON_BASE64=$(echo "{\"auths\":{\"ghcr.io\":{\"auth\":\"$(echo -n "${REPO_OWNER}:${GHCR_TOKEN}" | base64 | tr -d '\n')\"}}}" | base64 | tr -d '\n')
+          testing-farm request \
+            -e ENABLE_PUSH="yes" \
+            -e GIT_REF="${GIT_SHA}" \
+            -e TARGET_IMAGE="${TARGET_IMAGE}" \
+            -s AUTH_JSON_BASE64="${AUTH_JSON_BASE64}" \
+            --plan "${{ matrix.plan }}" \
+            --git-url https://github.com/thrix/nix-toolbox \
+            --git-ref "${GIT_SHA}"
+{% endraw %}
