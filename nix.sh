@@ -34,8 +34,23 @@ export GUM_SPIN_SPINNER="points"
 export GUM_SPIN_SHOW_ERROR="yes"
 export GUM_SPIN_TITLE="Please wait, this might take a while"
 
-# Install nix with flakes if no Nix store found
+# Ensure /nix is bind-mounted from persistent storage
+mkdir -p "$XDG_DATA_HOME/nix"
 if [ ! -e "/nix" ]; then
+    sudo mkdir /nix
+fi
+if ! mount | grep -q /nix; then
+    sudo mount --bind "$XDG_DATA_HOME/nix" /nix
+fi
+
+# Enable flakes
+sudo mkdir -p /etc/nix
+if [ ! -e "/etc/nix/nix.conf" ]; then
+    sudo bash -c "echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
+fi
+
+# Install nix if not already installed in the shared store
+if [ ! -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
     gum format <<EOF
 
 # Welcome to **nix-toolbox**!
@@ -48,22 +63,8 @@ EOF
 
     echo
 
-    gum log -l info "Enabling nix-command and flakes in /etc/nix/nix.conf"
-    sudo mkdir -p /etc/nix
-    sudo bash -c "echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
-
-    gum log -l info "Creating /nix bind-mounted to $XDG_DATA_HOME/nix"
-    mkdir -p "$XDG_DATA_HOME/nix"
-    sudo mkdir /nix
-    sudo mount --bind "$XDG_DATA_HOME/nix" /nix
-
     gum log -l info "Installing nix in single-user mode"
     gum spin -- bash -c "sh <(curl -sL https://nixos.org/nix/install) --no-daemon 2>&1"
-fi
-
-# Mount /nix if not mounted, required after restart
-if ! mount | grep -q /nix; then
-    sudo mount --bind "$XDG_DATA_HOME/nix" /nix
 fi
 
 # Source nix environment
