@@ -58,7 +58,6 @@ To remove Nix Toolbox from your system, delete the toolbox container:
         distrobox rm -f nix-toolbox-rawhide
         ```
 
-
 To remove the nix store and the links to Nix programs:
 
 ```shell
