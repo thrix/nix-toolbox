@@ -36,8 +36,11 @@ docs/serve: .FORCE  ## Run documentation development server
 
 ##@ Generate
 
-generate/build-fmf: .FORCE  ## Regenerate tmt/build.fmf from current Fedora active releases
+generate: .FORCE  ## Regenerate CI configs and docs from current Fedora active releases
 	uv run python scripts/generate-build-fmf.py
+
+# Keep old target name for backwards compatibility
+generate/build-fmf: generate
 
 ##@ Container
 
