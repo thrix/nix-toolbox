@@ -29,16 +29,16 @@ jobs:
       - name: Install make
         run: sudo apt-get update && sudo apt-get install -y make
 
-      - name: Regenerate build configs
+      - name: Regenerate configs and docs
         run: make generate/build-fmf
 
       - name: Create pull request if changed
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: |
-            ci: regenerate build configs for current Fedora releases
+            ci: regenerate configs and docs for current Fedora releases
           branch: refresh-build-fmf
-          title: 'ci: regenerate build configs for current Fedora releases'
+          title: 'ci: regenerate configs and docs for current Fedora releases'
           body: |
-            Automated weekly refresh of `tmt/build.fmf` and `container.yml` based on active Fedora releases.
+            Automated weekly refresh of CI configs and docs based on active Fedora releases.
           delete-branch: true

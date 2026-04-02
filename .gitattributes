@@ -1,2 +1,4 @@
 tmt/build.fmf linguist-generated
 .github/workflows/container.yml linguist-generated
+docs/getting-started.md linguist-generated
+docs/uninstalling.md linguist-generated

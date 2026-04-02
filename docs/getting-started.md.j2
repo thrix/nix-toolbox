@@ -7,70 +7,34 @@ Make sure you are running a system with [Toolbx](https://containertoolbx.org/) o
 
 Nix Toolbox provides container images for the following Fedora releases:
 
-- **Fedora 42**: `ghcr.io/thrix/nix-toolbox:42`
-- **Fedora 43**: `ghcr.io/thrix/nix-toolbox:43`
-- **Fedora 44**: `ghcr.io/thrix/nix-toolbox:44`
-- **Fedora Rawhide**: `ghcr.io/thrix/nix-toolbox:rawhide`
+{% for distro in distros %}
+- **{{ distro.name }}**: `ghcr.io/thrix/nix-toolbox:{{ distro.tag }}`
+{% endfor %}
 
 ## Create a Container
 
 Pick your Fedora release and create a Nix Toolbox container:
 
-=== "Fedora 42"
+{% for distro in distros %}
+{% if distro.label %}
+=== "{{ distro.name }} ({{ distro.label }})"
+{% else %}
+=== "{{ distro.name }}"
+{% endif %}
 
     === "Toolbox"
 
         ```shell
-        toolbox create --image ghcr.io/thrix/nix-toolbox:42
+        toolbox create --image ghcr.io/thrix/nix-toolbox:{{ distro.tag }}
         ```
 
     === "Distrobox"
 
         ```shell
-        distrobox create --image ghcr.io/thrix/nix-toolbox:42
+        distrobox create --image ghcr.io/thrix/nix-toolbox:{{ distro.tag }}
         ```
 
-=== "Fedora 43 (latest)"
-
-    === "Toolbox"
-
-        ```shell
-        toolbox create --image ghcr.io/thrix/nix-toolbox:43
-        ```
-
-    === "Distrobox"
-
-        ```shell
-        distrobox create --image ghcr.io/thrix/nix-toolbox:43
-        ```
-
-=== "Fedora 44 (Branched)"
-
-    === "Toolbox"
-
-        ```shell
-        toolbox create --image ghcr.io/thrix/nix-toolbox:44
-        ```
-
-    === "Distrobox"
-
-        ```shell
-        distrobox create --image ghcr.io/thrix/nix-toolbox:44
-        ```
-
-=== "Fedora Rawhide (Development)"
-
-    === "Toolbox"
-
-        ```shell
-        toolbox create --image ghcr.io/thrix/nix-toolbox:rawhide
-        ```
-
-    === "Distrobox"
-
-        ```shell
-        distrobox create --image ghcr.io/thrix/nix-toolbox:rawhide
-        ```
+{% endfor %}
 
 This will create the nix-toolbox container.
 
@@ -78,61 +42,26 @@ This will create the nix-toolbox container.
 
 The Nix and Home Manager setup is then performed the first time you enter the container:
 
-=== "Fedora 42"
+{% for distro in distros %}
+{% if distro.label %}
+=== "{{ distro.name }} ({{ distro.label }})"
+{% else %}
+=== "{{ distro.name }}"
+{% endif %}
 
     === "Toolbox"
 
         ```shell
-        toolbox enter nix-toolbox-42
+        toolbox enter nix-toolbox-{{ distro.tag }}
         ```
 
     === "Distrobox"
 
         ```shell
-        distrobox enter nix-toolbox-42
+        distrobox enter nix-toolbox-{{ distro.tag }}
         ```
 
-=== "Fedora 43 (latest)"
-
-    === "Toolbox"
-
-        ```shell
-        toolbox enter nix-toolbox-43
-        ```
-
-    === "Distrobox"
-
-        ```shell
-        distrobox enter nix-toolbox-43
-        ```
-
-=== "Fedora 44 (Branched)"
-
-    === "Toolbox"
-
-        ```shell
-        toolbox enter nix-toolbox-44
-        ```
-
-    === "Distrobox"
-
-        ```shell
-        distrobox enter nix-toolbox-44
-        ```
-
-=== "Fedora Rawhide (Development)"
-
-    === "Toolbox"
-
-        ```shell
-        toolbox enter nix-toolbox-rawhide
-        ```
-
-    === "Distrobox"
-
-        ```shell
-        distrobox enter nix-toolbox-rawhide
-        ```
+{% endfor %}
 
 !!! note
 
@@ -165,15 +94,15 @@ Create containers for the versions you need:
 === "Toolbox"
 
     ```shell
-    toolbox create --image ghcr.io/thrix/nix-toolbox:42
-    toolbox create --image ghcr.io/thrix/nix-toolbox:43
+    toolbox create --image ghcr.io/thrix/nix-toolbox:{{ oldest }}
+    toolbox create --image ghcr.io/thrix/nix-toolbox:{{ latest }}
     ```
 
 === "Distrobox"
 
     ```shell
-    distrobox create --image ghcr.io/thrix/nix-toolbox:42
-    distrobox create --image ghcr.io/thrix/nix-toolbox:43
+    distrobox create --image ghcr.io/thrix/nix-toolbox:{{ oldest }}
+    distrobox create --image ghcr.io/thrix/nix-toolbox:{{ latest }}
     ```
 
 Then switch between them freely:
@@ -181,15 +110,15 @@ Then switch between them freely:
 === "Toolbox"
 
     ```shell
-    toolbox enter nix-toolbox-42   # enter the first container
-    toolbox enter nix-toolbox-43   # enter the second container
+    toolbox enter nix-toolbox-{{ oldest }}   # enter the first container
+    toolbox enter nix-toolbox-{{ latest }}   # enter the second container
     ```
 
 === "Distrobox"
 
     ```shell
-    distrobox enter nix-toolbox-42   # enter the first container
-    distrobox enter nix-toolbox-43   # enter the second container
+    distrobox enter nix-toolbox-{{ oldest }}   # enter the first container
+    distrobox enter nix-toolbox-{{ latest }}   # enter the second container
     ```
 
 !!! tip
