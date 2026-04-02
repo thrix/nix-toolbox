@@ -49,8 +49,10 @@ fi
 
 # Enable flakes
 sudo mkdir -p /etc/nix
-if [ ! -e "/etc/nix/nix.conf" ] || ! grep -q 'nix-command' /etc/nix/nix.conf; then
+if [ ! -e "/etc/nix/nix.conf" ]; then
     sudo bash -c "echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
+elif ! grep -q 'nix-command' /etc/nix/nix.conf; then
+    sudo bash -c "echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf"
 fi
 
 # Install nix if not already installed in the shared store
