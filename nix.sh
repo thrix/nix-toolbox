@@ -44,14 +44,14 @@ if [ ! -d "/nix" ]; then
     sudo mkdir -p /nix
 fi
 if ! mountpoint -q /nix; then
-    sudo mount --bind "$XDG_DATA_HOME/nix" /nix
+    sudo mount --bind "$XDG_DATA_HOME/nix" /nix || mountpoint -q /nix
 fi
 
 # Enable flakes
 sudo mkdir -p /etc/nix
 if [ ! -e "/etc/nix/nix.conf" ]; then
     sudo bash -c "echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
-elif ! grep -q 'nix-command' /etc/nix/nix.conf; then
+elif ! grep -q 'nix-command' /etc/nix/nix.conf || ! grep -q 'flakes' /etc/nix/nix.conf; then
     sudo bash -c "echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf"
 fi
 
