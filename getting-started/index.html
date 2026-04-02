@@ -296,6 +296,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -312,6 +330,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Images
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enter-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enter the Container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-multiple-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Multiple Containers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -445,6 +526,58 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Images
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enter-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enter the Container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-multiple-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Multiple Containers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -466,8 +599,20 @@
 <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
 <p>Starting with Nix Toolbox is really simple.
 Make sure you are running a system with <a href="https://containertoolbx.org/">Toolbx</a> or <a href="https://distrobox.it/">Distrobox</a> installed.</p>
-<p>Create Nix Toolbox container</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Toolbox</label><label for="__tabbed_1_2">Distrobox</label></div>
+<h2 id="available-images">Available Images<a class="headerlink" href="#available-images" title="Permanent link">&para;</a></h2>
+<p>Nix Toolbox provides container images for the following Fedora releases:</p>
+<ul>
+<li><strong>Fedora 42</strong>: <code>ghcr.io/thrix/nix-toolbox:42</code></li>
+<li><strong>Fedora 43</strong>: <code>ghcr.io/thrix/nix-toolbox:43</code></li>
+<li><strong>Fedora 44</strong>: <code>ghcr.io/thrix/nix-toolbox:44</code></li>
+<li><strong>Fedora Rawhide</strong>: <code>ghcr.io/thrix/nix-toolbox:rawhide</code></li>
+</ul>
+<h2 id="create-a-container">Create a Container<a class="headerlink" href="#create-a-container" title="Permanent link">&para;</a></h2>
+<p>Pick your Fedora release and create a Nix Toolbox container:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Fedora 42</label><label for="__tabbed_1_2">Fedora 43 (latest)</label><label for="__tabbed_1_3">Fedora 44 (Branched)</label><label for="__tabbed_1_4">Fedora Rawhide (Development)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Toolbox</label><label for="__tabbed_2_2">Distrobox</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:42
@@ -479,9 +624,58 @@ Make sure you are running a system with <a href="https://containertoolbx.org/">T
 </div>
 </div>
 </div>
-<p>This will create the <code>nix-toolbox</code> the container.</p>
-<p>The Nix and Home Manager setup is then performed when you first time enter the container:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Toolbox</label><label for="__tabbed_2_2">Distrobox</label></div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Toolbox</label><label for="__tabbed_3_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:43
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:43
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Toolbox</label><label for="__tabbed_4_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:44
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:44
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Toolbox</label><label for="__tabbed_5_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:rawhide
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:rawhide
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This will create the nix-toolbox container.</p>
+<h2 id="enter-the-container">Enter the Container<a class="headerlink" href="#enter-the-container" title="Permanent link">&para;</a></h2>
+<p>The Nix and Home Manager setup is then performed the first time you enter the container:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Fedora 42</label><label for="__tabbed_6_2">Fedora 43 (latest)</label><label for="__tabbed_6_3">Fedora 44 (Branched)</label><label for="__tabbed_6_4">Fedora Rawhide (Development)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Toolbox</label><label for="__tabbed_7_2">Distrobox</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-42
@@ -490,6 +684,51 @@ Make sure you are running a system with <a href="https://containertoolbx.org/">T
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-42
 </code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Toolbox</label><label for="__tabbed_8_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-43
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-43
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Toolbox</label><label for="__tabbed_9_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-44
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-44
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Toolbox</label><label for="__tabbed_10_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-rawhide
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-rawhide
+</code></pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -511,6 +750,44 @@ We are planning to throw out a more reasonable template later for easier onboard
 </div>
 <p>The home manager configuration is available at <code>~/.config/home-manager/home.nix</code>.
 When changing the Home Manager configuration it is a good practice to put it under revision control to keep history of your changes to be able to easily replicate the setup on another computer.</p>
+<h2 id="running-multiple-containers">Running Multiple Containers<a class="headerlink" href="#running-multiple-containers" title="Permanent link">&para;</a></h2>
+<p>You can run multiple nix-toolbox containers with different Fedora versions side by side.
+All containers share the same Nix store (<code>~/.local/share/nix</code>), so packages installed in one container are immediately available in all others.</p>
+<p>Create containers for the versions you need:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Toolbox</label><label for="__tabbed_11_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:42
+toolbox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:43
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:42
+distrobox<span class="w"> </span>create<span class="w"> </span>--image<span class="w"> </span>ghcr.io/thrix/nix-toolbox:43
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Then switch between them freely:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Toolbox</label><label for="__tabbed_12_2">Distrobox</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-42<span class="w">   </span><span class="c1"># enter the first container</span>
+toolbox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-43<span class="w">   </span><span class="c1"># enter the second container</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>distrobox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-42<span class="w">   </span><span class="c1"># enter the first container</span>
+distrobox<span class="w"> </span>enter<span class="w"> </span>nix-toolbox-43<span class="w">   </span><span class="c1"># enter the second container</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Nix installation and Home Manager configuration are shared across all containers.
+This means you only need to set up Nix once — subsequent containers will pick up the existing installation automatically.</p>
+</div>
 
 
 
