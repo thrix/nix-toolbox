@@ -60,10 +60,15 @@ def get_fedora_releases() -> tuple[list[int], dict[int, str]]:
     return sorted(versions), states
 
 
+def get_latest_stable(versions: list[int], states: dict[int, str]) -> int:
+    """Return the latest stable Fedora version, falling back to the newest version."""
+    stable_versions = [v for v in versions if states.get(v) == "current"]
+    return max(stable_versions) if stable_versions else max(versions)
+
+
 def build_distro_list(versions: list[int], states: dict[int, str]) -> list[dict]:
     """Build the list of supported distros from Fedora versions."""
-    stable_versions = [v for v in versions if states.get(v) == "current"]
-    latest_stable = max(stable_versions) if stable_versions else max(versions)
+    latest_stable = get_latest_stable(versions, states)
     distros = []
 
     for version in versions:
@@ -93,8 +98,7 @@ def main() -> None:
     print(f"Active Fedora releases: {versions}")
 
     distros = build_distro_list(versions, states)
-    stable_versions = [v for v in versions if states.get(v) == "current"]
-    latest_stable = max(stable_versions) if stable_versions else max(versions)
+    latest_stable = get_latest_stable(versions, states)
 
     for template_path, output_path in CI_TEMPLATES.items():
         render_template(template_path, output_path, {"versions": versions})
