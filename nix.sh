@@ -44,7 +44,10 @@ if [ ! -d "/nix" ]; then
     sudo mkdir -p /nix
 fi
 if ! mountpoint -q /nix; then
-    sudo mount --bind "$XDG_DATA_HOME/nix" /nix || mountpoint -q /nix
+    if ! sudo mount --bind "$XDG_DATA_HOME/nix" /nix; then
+        echo "ERROR: Failed to bind-mount $XDG_DATA_HOME/nix to /nix." >&2
+        exit 1
+    fi
 fi
 
 # Enable flakes
@@ -52,6 +55,7 @@ sudo mkdir -p /etc/nix
 if [ ! -e "/etc/nix/nix.conf" ]; then
     sudo bash -c "echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
 elif ! grep -q 'nix-command' /etc/nix/nix.conf || ! grep -q 'flakes' /etc/nix/nix.conf; then
+    sudo sed -i '/^experimental-features/d' /etc/nix/nix.conf
     sudo bash -c "echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf"
 fi
 
