@@ -34,8 +34,33 @@ export GUM_SPIN_SPINNER="points"
 export GUM_SPIN_SHOW_ERROR="yes"
 export GUM_SPIN_TITLE="Please wait, this might take a while"
 
-# Install nix with flakes if no Nix store found
-if [ ! -e "/nix" ]; then
+# Ensure /nix is bind-mounted from persistent storage
+mkdir -p "$XDG_DATA_HOME/nix"
+if [ -e "/nix" ] && [ ! -d "/nix" ]; then
+    echo "ERROR: /nix exists but is not a directory; cannot bind-mount persistent Nix store." >&2
+    exit 1
+fi
+if [ ! -d "/nix" ]; then
+    sudo mkdir -p /nix
+fi
+if ! mountpoint -q /nix; then
+    if ! sudo mount --bind "$XDG_DATA_HOME/nix" /nix; then
+        echo "ERROR: Failed to bind-mount $XDG_DATA_HOME/nix to /nix." >&2
+        exit 1
+    fi
+fi
+
+# Enable flakes
+sudo mkdir -p /etc/nix
+if [ ! -e "/etc/nix/nix.conf" ]; then
+    sudo bash -c "echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
+elif ! grep -q 'nix-command' /etc/nix/nix.conf || ! grep -q 'flakes' /etc/nix/nix.conf; then
+    sudo sed -i '/^experimental-features/d' /etc/nix/nix.conf
+    sudo bash -c "echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf"
+fi
+
+# Install nix if not already installed in the shared store
+if [ ! -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
     gum format <<EOF
 
 # Welcome to **nix-toolbox**!
@@ -48,22 +73,8 @@ EOF
 
     echo
 
-    gum log -l info "Enabling nix-command and flakes in /etc/nix/nix.conf"
-    sudo mkdir -p /etc/nix
-    sudo bash -c "echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf"
-
-    gum log -l info "Creating /nix bind-mounted to $XDG_DATA_HOME/nix"
-    mkdir -p "$XDG_DATA_HOME/nix"
-    sudo mkdir /nix
-    sudo mount --bind "$XDG_DATA_HOME/nix" /nix
-
     gum log -l info "Installing nix in single-user mode"
     gum spin -- bash -c "sh <(curl -sL https://nixos.org/nix/install) --no-daemon 2>&1"
-fi
-
-# Mount /nix if not mounted, required after restart
-if ! mount | grep -q /nix; then
-    sudo mount --bind "$XDG_DATA_HOME/nix" /nix
 fi
 
 # Source nix environment
