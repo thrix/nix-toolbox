@@ -15,6 +15,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    environment: build
+
     permissions:
       packages: write
 
@@ -31,7 +33,8 @@ jobs:
             plan: /tmt/build/rawhide
 
     container:
-      image: quay.io/testing-farm/cli:latest
+      # Always use latest Testing Farm CLI to get newest features and fixes
+      image: quay.io/testing-farm/cli:latest  # zizmor: ignore[unpinned-images]
 
     steps:
       - name: Compute image tag
