@@ -12,6 +12,12 @@ if ! command -v "gum" >/dev/null; then
     exit 1
 fi
 
+# Double source guard
+if [[ -n "$NIX_TOOLBOX_SOURCED" ]]; then
+    return 0
+fi
+export NIX_TOOLBOX_SOURCED=1
+
 # Nix does not like home being a symlink, use the real path instead
 HOME=$(readlink -f "$HOME")
 export HOME
