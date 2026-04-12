@@ -74,7 +74,7 @@ EOF
     echo
 
     gum log -l info "Installing nix in single-user mode"
-    gum spin -- bash -c "sh <(curl -sL https://nixos.org/nix/install) --no-daemon 2>&1"
+    gum spin -- bash --noprofile --norc -c "sh <(curl -sL https://nixos.org/nix/install) --no-daemon 2>&1"
 fi
 
 # Source nix environment
