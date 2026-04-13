@@ -72,6 +72,7 @@ Pick your Fedora release and create a Nix Toolbox container:
         distrobox create --image ghcr.io/thrix/nix-toolbox:rawhide
         ```
 
+
 This will create the nix-toolbox container.
 
 ## Enter the Container
@@ -133,6 +134,7 @@ The Nix and Home Manager setup is then performed the first time you enter the co
         ```shell
         distrobox enter nix-toolbox-rawhide
         ```
+
 
 !!! note
 
