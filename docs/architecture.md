@@ -53,7 +53,8 @@ The script implements a sophisticated Nix installation strategy:
 
 Nix-toolbox uses a bind mount approach for persistent storage:
 
-- **Host Storage**: Nix store is persisted in `$XDG_DATA_HOME/nix/root/nix/` on the host, matching the path used by upstream Nix's user namespace sandboxing. Existing installs using the legacy `$XDG_DATA_HOME/nix` path are automatically detected and preserved.
+- **Host Storage**: Nix store is persisted in `$XDG_DATA_HOME/nix/root/nix/` on the host, matching the path used by upstream Nix's user namespace sandboxing.
+Existing installs using the legacy `$XDG_DATA_HOME/nix` path are automatically detected and preserved.
 - **Container Mount**: Bind-mounted to `/nix` inside the container
 - **Benefits**:
   - Survives container recreation
