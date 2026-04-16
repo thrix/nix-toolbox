@@ -40,17 +40,17 @@ export GUM_SPIN_SPINNER="points"
 export GUM_SPIN_SHOW_ERROR="yes"
 export GUM_SPIN_TITLE="Please wait, this might take a while"
 
-# Determine persistent Nix store location
+# Determine persistent Nix root location (bind-mounted to /nix)
 # New installs use upstream-compatible path: $XDG_DATA_HOME/nix/root/nix/
-# Existing installs with store directly in $XDG_DATA_HOME/nix/ are preserved
+# Existing installs with Nix root directly in $XDG_DATA_HOME/nix/ are preserved
 if [ -d "$XDG_DATA_HOME/nix/store" ]; then
-    NIX_STORE_DIR="$XDG_DATA_HOME/nix"
+    NIX_ROOT_DIR="$XDG_DATA_HOME/nix"
 else
-    NIX_STORE_DIR="$XDG_DATA_HOME/nix/root/nix"
+    NIX_ROOT_DIR="$XDG_DATA_HOME/nix/root/nix"
 fi
 
 # Ensure /nix is bind-mounted from persistent storage
-mkdir -p "$NIX_STORE_DIR"
+mkdir -p "$NIX_ROOT_DIR"
 if [ -e "/nix" ] && [ ! -d "/nix" ]; then
     echo "ERROR: /nix exists but is not a directory; cannot bind-mount persistent Nix store." >&2
     exit 1
@@ -59,8 +59,8 @@ if [ ! -d "/nix" ]; then
     sudo mkdir -p /nix
 fi
 if ! mountpoint -q /nix; then
-    if ! sudo mount --bind "$NIX_STORE_DIR" /nix; then
-        echo "ERROR: Failed to bind-mount $NIX_STORE_DIR to /nix." >&2
+    if ! sudo mount --bind "$NIX_ROOT_DIR" /nix; then
+        echo "ERROR: Failed to bind-mount $NIX_ROOT_DIR to /nix." >&2
         exit 1
     fi
 fi
