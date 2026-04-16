@@ -10,10 +10,28 @@ on:
   schedule:
     - cron: '0 4 * * 1'
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      git_sha:
+        required: true
+        type: string
+      pr_number:
+        required: true
+        type: string
+    secrets:
+      TESTING_FARM_API_TOKEN:
+        required: true
+      GHCR_TOKEN:
+        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # Skip fork PRs — they are handled by container-pr.yml
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
 
     permissions:
       packages: write
@@ -32,13 +50,36 @@ jobs:
       image: quay.io/testing-farm/cli:latest
 
     steps:
+      - name: Resolve refs
+        id: refs
+        env:
+          INPUT_PR_NUMBER: ${{ inputs.pr_number }}
+          INPUT_GIT_SHA: ${{ inputs.git_sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_GIT_SHA: ${{ github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ -n "${INPUT_PR_NUMBER}" ]; then
+            echo "pr_number=${INPUT_PR_NUMBER}" >> "$GITHUB_OUTPUT"
+            echo "git_sha=${INPUT_GIT_SHA}" >> "$GITHUB_OUTPUT"
+          elif [ "${EVENT_NAME}" = "pull_request" ]; then
+            echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
+            echo "git_sha=${PR_HEAD_SHA}" >> "$GITHUB_OUTPUT"
+          else
+            echo "git_sha=${PUSH_GIT_SHA}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Compute image tag
         id: tag
+        env:
+          PR_NUMBER: ${{ steps.refs.outputs.pr_number }}
+          VERSION: ${{ matrix.version }}
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "value=pr-${{ github.event.number }}-${{ matrix.version }}" >> $GITHUB_OUTPUT
+          if [ -n "${PR_NUMBER}" ]; then
+            echo "value=pr-${PR_NUMBER}-${VERSION}" >> "$GITHUB_OUTPUT"
           else
-            echo "value=${{ matrix.version }}" >> $GITHUB_OUTPUT
+            echo "value=${VERSION}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Schedule build via Testing Farm
@@ -46,7 +87,7 @@ jobs:
           TESTING_FARM_API_TOKEN: ${{ secrets.TESTING_FARM_API_TOKEN }}
           GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
           REPO_OWNER: ${{ github.repository_owner }}
-          GIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          GIT_SHA: ${{ steps.refs.outputs.git_sha }}
           TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:${{ steps.tag.outputs.value }}
         run: |
           AUTH_JSON_BASE64=$(echo "{\"auths\":{\"ghcr.io\":{\"auth\":\"$(echo -n "${REPO_OWNER}:${GHCR_TOKEN}" | base64 | tr -d '\n')\"}}}" | base64 | tr -d '\n')
