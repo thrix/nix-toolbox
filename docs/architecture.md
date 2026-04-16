@@ -44,7 +44,7 @@ The script implements a sophisticated Nix installation strategy:
 1. **Detection**: Checks if `/nix` directory exists
 2. **First-time Setup**: If no Nix store is found:
    - Enables `nix-command` and `flakes` in `/etc/nix/nix.conf`
-   - Creates a bind mount from `$XDG_DATA_HOME/nix` to `/nix`
+   - Creates a bind mount from `$XDG_DATA_HOME/nix/root/nix/` to `/nix`
    - Installs Nix in single-user mode via the official installer
 3. **Runtime Mount**: Ensures `/nix` is properly mounted on each container start
 4. **Environment Sourcing**: Sources the Nix environment from `~/.nix-profile/etc/profile.d/nix.sh`
@@ -53,12 +53,14 @@ The script implements a sophisticated Nix installation strategy:
 
 Nix-toolbox uses a bind mount approach for persistent storage:
 
-- **Host Storage**: Nix store is persisted in `$XDG_DATA_HOME/nix` on the host
+- **Host Storage**: Nix store is persisted in `$XDG_DATA_HOME/nix/root/nix/` on the host, matching the path used by upstream Nix's user namespace sandboxing.
+Existing installs using the legacy `$XDG_DATA_HOME/nix` path are automatically detected and preserved.
 - **Container Mount**: Bind-mounted to `/nix` inside the container
 - **Benefits**:
   - Survives container recreation
   - Shares storage between multiple nix-toolbox containers
   - Keeps the Nix store outside the container filesystem
+  - Compatible with host Nix installations using user namespace sandboxing
 
 ### Home Manager Integration
 
