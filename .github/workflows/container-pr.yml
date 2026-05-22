@@ -1,0 +1,101 @@
+---
+name: Container Build (PR)
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
+
+permissions: {}
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    # Post a comment on newly opened fork PRs from external contributors
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.action == 'opened' &&
+      github.event.pull_request.head.repo.full_name != github.repository &&
+      github.event.pull_request.author_association != 'OWNER' &&
+      github.event.pull_request.author_association != 'MEMBER' &&
+      github.event.pull_request.author_association != 'COLLABORATOR'
+
+    steps:
+      - name: Post approval notice
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          gh api "repos/${REPOSITORY}/issues/${PR_NUMBER}/comments" \
+            -f body='Thank you for your contribution! CI tests for fork PRs require maintainer approval. A maintainer will review and comment `/test` to trigger the test suite.'
+
+  resolve:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: read
+
+    # Run if:
+    # - fork PR from a trusted user (OWNER/MEMBER/COLLABORATOR) — auto
+    # - /test comment from a trusted user on a fork PR — manual approval
+    # Same-repo PRs are handled directly by container.yml via pull_request trigger.
+    if: >-
+      (
+        github.event_name == 'pull_request_target' &&
+        github.event.pull_request.head.repo.full_name != github.repository &&
+        (
+          github.event.pull_request.author_association == 'OWNER' ||
+          github.event.pull_request.author_association == 'MEMBER' ||
+          github.event.pull_request.author_association == 'COLLABORATOR'
+        )
+      ) ||
+      (
+        github.event_name == 'issue_comment' &&
+        github.event.issue.pull_request &&
+        startsWith(github.event.comment.body, '/test') &&
+        (
+          github.event.comment.author_association == 'OWNER' ||
+          github.event.comment.author_association == 'MEMBER' ||
+          github.event.comment.author_association == 'COLLABORATOR'
+        )
+      )
+
+    outputs:
+      git_sha: ${{ steps.pr.outputs.sha }}
+      pr_number: ${{ steps.pr.outputs.number }}
+
+    steps:
+      - name: Get PR info
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          COMMENT_PR_NUMBER: ${{ github.event.issue.number }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [ "${EVENT_NAME}" = "issue_comment" ]; then
+            GIT_SHA=$(gh api "repos/${REPOSITORY}/pulls/${COMMENT_PR_NUMBER}" --jq '.head.sha')
+            echo "number=${COMMENT_PR_NUMBER}" >> "$GITHUB_OUTPUT"
+          else
+            GIT_SHA=${PR_HEAD_SHA}
+            echo "number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
+          fi
+          echo "sha=${GIT_SHA}" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: resolve
+    uses: ./.github/workflows/container.yml
+    with:
+      git_sha: ${{ needs.resolve.outputs.git_sha }}
+      pr_number: ${{ needs.resolve.outputs.pr_number }}
+    secrets:
+      TESTING_FARM_API_TOKEN: ${{ secrets.TESTING_FARM_API_TOKEN }}
+      GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}

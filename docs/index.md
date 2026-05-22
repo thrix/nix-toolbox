@@ -15,3 +15,7 @@ This project builds on top of [Fedora Toolbox](https://docs.fedoraproject.org/en
 Follow [Getting Started](https://thrix.github.io/nix-toolbox/getting-started) to try out Nix Toolbox.
 
 The project was introduced at DevConf.CZ 2025 conference, you can find the [introduction talk here](https://pretalx.devconf.info/devconf-cz-2025/talk/G9JURJ/).
+
+## Contributors
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the list of people who helped make this project better.
