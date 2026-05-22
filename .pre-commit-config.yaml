@@ -42,9 +42,9 @@ repos:
           - .markdownlint.yaml
           - --fix
           - --rules
-          - sentences-per-line
+          - markdownlint-sentences-per-line
         additional_dependencies:
-          - sentences-per-line
+          - markdownlint-sentences-per-line
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.2
