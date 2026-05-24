@@ -28,6 +28,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    environment: build
+
+    permissions:
+      packages: write
+
     # Skip fork PRs — they are handled by container-pr.yml
     if: >-
       github.event_name != 'pull_request' ||
@@ -46,7 +51,8 @@ jobs:
             plan: /tmt/build/rawhide
 
     container:
-      image: quay.io/testing-farm/cli:latest
+      # Always use latest Testing Farm CLI to get newest features and fixes
+      image: quay.io/testing-farm/cli:latest  # zizmor: ignore[unpinned-images]
 
     steps:
       - name: Resolve refs
