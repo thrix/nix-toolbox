@@ -30,7 +30,7 @@ Pick your Fedora release and create a Nix Toolbox container:
         distrobox create --image ghcr.io/thrix/nix-toolbox:42
         ```
 
-=== "Fedora 43 (latest)"
+=== "Fedora 43"
 
     === "Toolbox"
 
@@ -44,7 +44,7 @@ Pick your Fedora release and create a Nix Toolbox container:
         distrobox create --image ghcr.io/thrix/nix-toolbox:43
         ```
 
-=== "Fedora 44 (Branched)"
+=== "Fedora 44 (latest)"
 
     === "Toolbox"
 
@@ -72,6 +72,7 @@ Pick your Fedora release and create a Nix Toolbox container:
         distrobox create --image ghcr.io/thrix/nix-toolbox:rawhide
         ```
 
+
 This will create the nix-toolbox container.
 
 ## Enter the Container
@@ -92,7 +93,7 @@ The Nix and Home Manager setup is then performed the first time you enter the co
         distrobox enter nix-toolbox-42
         ```
 
-=== "Fedora 43 (latest)"
+=== "Fedora 43"
 
     === "Toolbox"
 
@@ -106,7 +107,7 @@ The Nix and Home Manager setup is then performed the first time you enter the co
         distrobox enter nix-toolbox-43
         ```
 
-=== "Fedora 44 (Branched)"
+=== "Fedora 44 (latest)"
 
     === "Toolbox"
 
@@ -133,6 +134,7 @@ The Nix and Home Manager setup is then performed the first time you enter the co
         ```shell
         distrobox enter nix-toolbox-rawhide
         ```
+
 
 !!! note
 
@@ -166,14 +168,14 @@ Create containers for the versions you need:
 
     ```shell
     toolbox create --image ghcr.io/thrix/nix-toolbox:42
-    toolbox create --image ghcr.io/thrix/nix-toolbox:43
+    toolbox create --image ghcr.io/thrix/nix-toolbox:44
     ```
 
 === "Distrobox"
 
     ```shell
     distrobox create --image ghcr.io/thrix/nix-toolbox:42
-    distrobox create --image ghcr.io/thrix/nix-toolbox:43
+    distrobox create --image ghcr.io/thrix/nix-toolbox:44
     ```
 
 Then switch between them freely:
@@ -182,14 +184,14 @@ Then switch between them freely:
 
     ```shell
     toolbox enter nix-toolbox-42   # enter the first container
-    toolbox enter nix-toolbox-43   # enter the second container
+    toolbox enter nix-toolbox-44   # enter the second container
     ```
 
 === "Distrobox"
 
     ```shell
     distrobox enter nix-toolbox-42   # enter the first container
-    distrobox enter nix-toolbox-43   # enter the second container
+    distrobox enter nix-toolbox-44   # enter the second container
     ```
 
 !!! tip
