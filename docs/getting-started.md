@@ -7,30 +7,16 @@ Make sure you are running a system with [Toolbx](https://containertoolbx.org/) o
 
 Nix Toolbox provides container images for the following Fedora releases:
 
-- **Fedora 42**: `ghcr.io/thrix/nix-toolbox:42`
 - **Fedora 43**: `ghcr.io/thrix/nix-toolbox:43`
 - **Fedora 44**: `ghcr.io/thrix/nix-toolbox:44`
+- **Fedora 45**: `ghcr.io/thrix/nix-toolbox:45`
 - **Fedora Rawhide**: `ghcr.io/thrix/nix-toolbox:rawhide`
 
 ## Create a Container
 
 Pick your Fedora release and create a Nix Toolbox container:
 
-=== "Fedora 42"
-
-    === "Toolbox"
-
-        ```shell
-        toolbox create --image ghcr.io/thrix/nix-toolbox:42
-        ```
-
-    === "Distrobox"
-
-        ```shell
-        distrobox create --image ghcr.io/thrix/nix-toolbox:42
-        ```
-
-=== "Fedora 43 (latest)"
+=== "Fedora 43"
 
     === "Toolbox"
 
@@ -44,7 +30,7 @@ Pick your Fedora release and create a Nix Toolbox container:
         distrobox create --image ghcr.io/thrix/nix-toolbox:43
         ```
 
-=== "Fedora 44 (Branched)"
+=== "Fedora 44 (latest)"
 
     === "Toolbox"
 
@@ -56,6 +42,20 @@ Pick your Fedora release and create a Nix Toolbox container:
 
         ```shell
         distrobox create --image ghcr.io/thrix/nix-toolbox:44
+        ```
+
+=== "Fedora 45 (Branched)"
+
+    === "Toolbox"
+
+        ```shell
+        toolbox create --image ghcr.io/thrix/nix-toolbox:45
+        ```
+
+    === "Distrobox"
+
+        ```shell
+        distrobox create --image ghcr.io/thrix/nix-toolbox:45
         ```
 
 === "Fedora Rawhide (Development)"
@@ -78,21 +78,7 @@ This will create the nix-toolbox container.
 
 The Nix and Home Manager setup is then performed the first time you enter the container:
 
-=== "Fedora 42"
-
-    === "Toolbox"
-
-        ```shell
-        toolbox enter nix-toolbox-42
-        ```
-
-    === "Distrobox"
-
-        ```shell
-        distrobox enter nix-toolbox-42
-        ```
-
-=== "Fedora 43 (latest)"
+=== "Fedora 43"
 
     === "Toolbox"
 
@@ -106,7 +92,7 @@ The Nix and Home Manager setup is then performed the first time you enter the co
         distrobox enter nix-toolbox-43
         ```
 
-=== "Fedora 44 (Branched)"
+=== "Fedora 44 (latest)"
 
     === "Toolbox"
 
@@ -118,6 +104,20 @@ The Nix and Home Manager setup is then performed the first time you enter the co
 
         ```shell
         distrobox enter nix-toolbox-44
+        ```
+
+=== "Fedora 45 (Branched)"
+
+    === "Toolbox"
+
+        ```shell
+        toolbox enter nix-toolbox-45
+        ```
+
+    === "Distrobox"
+
+        ```shell
+        distrobox enter nix-toolbox-45
         ```
 
 === "Fedora Rawhide (Development)"
@@ -165,15 +165,15 @@ Create containers for the versions you need:
 === "Toolbox"
 
     ```shell
-    toolbox create --image ghcr.io/thrix/nix-toolbox:42
     toolbox create --image ghcr.io/thrix/nix-toolbox:43
+    toolbox create --image ghcr.io/thrix/nix-toolbox:44
     ```
 
 === "Distrobox"
 
     ```shell
-    distrobox create --image ghcr.io/thrix/nix-toolbox:42
     distrobox create --image ghcr.io/thrix/nix-toolbox:43
+    distrobox create --image ghcr.io/thrix/nix-toolbox:44
     ```
 
 Then switch between them freely:
@@ -181,15 +181,15 @@ Then switch between them freely:
 === "Toolbox"
 
     ```shell
-    toolbox enter nix-toolbox-42   # enter the first container
-    toolbox enter nix-toolbox-43   # enter the second container
+    toolbox enter nix-toolbox-43   # enter the first container
+    toolbox enter nix-toolbox-44   # enter the second container
     ```
 
 === "Distrobox"
 
     ```shell
-    distrobox enter nix-toolbox-42   # enter the first container
-    distrobox enter nix-toolbox-43   # enter the second container
+    distrobox enter nix-toolbox-43   # enter the first container
+    distrobox enter nix-toolbox-44   # enter the second container
     ```
 
 !!! tip
