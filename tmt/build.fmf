@@ -22,11 +22,6 @@ provision:
 execute:
   how: tmt
 
-/f42:
-  environment+:
-    BUILD_ARGS: "--build-arg FEDORA_VERSION=42"
-    TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:42
-
 /f43:
   environment+:
     BUILD_ARGS: "--build-arg FEDORA_VERSION=43"
@@ -36,6 +31,11 @@ execute:
   environment+:
     BUILD_ARGS: "--build-arg FEDORA_VERSION=44"
     TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:44
+
+/f45:
+  environment+:
+    BUILD_ARGS: "--build-arg FEDORA_VERSION=45"
+    TARGET_IMAGE: ghcr.io/thrix/nix-toolbox:45
 
 /rawhide:
   environment+:
