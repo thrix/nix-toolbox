@@ -36,12 +36,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - version: "42"
-            plan: /tmt/build/f42
           - version: "43"
             plan: /tmt/build/f43
           - version: "44"
             plan: /tmt/build/f44
+          - version: "45"
+            plan: /tmt/build/f45
           - version: rawhide
             plan: /tmt/build/rawhide
 
