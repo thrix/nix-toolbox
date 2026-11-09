@@ -16,7 +16,7 @@ To remove Nix Toolbox from your system, delete the toolbox container:
         distrobox rm -f nix-toolbox-43
         ```
 
-=== "Fedora 44 (latest)"
+=== "Fedora 44"
 
     === "Toolbox"
 
@@ -30,7 +30,7 @@ To remove Nix Toolbox from your system, delete the toolbox container:
         distrobox rm -f nix-toolbox-44
         ```
 
-=== "Fedora 45 (Branched)"
+=== "Fedora 45 (latest)"
 
     === "Toolbox"
 
@@ -57,6 +57,7 @@ To remove Nix Toolbox from your system, delete the toolbox container:
         ```shell
         distrobox rm -f nix-toolbox-rawhide
         ```
+
 
 To remove the Nix store and the links to Nix programs:
 
